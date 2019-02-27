@@ -29,5 +29,51 @@
     <script src="./assets/js/crystal.js"></script>
     <title>Crystal Collector</title>
   </head>
-  <body></body>
+  <body>
+    <div class="container-fluid bgimg">
+      <div class="jumbotron text-center bg-transparent text-warning pt-0">
+        <h1>Crystal Collector</h1>
+      </div>
+      <div class="row mx-0">
+        <div class="column col-12 text-center">
+          <span class="bg-magic">Magic Number</span>
+        </div>
+      </div>
+      <div class="row mx-0 mt-1">
+        <div class="column col-12 text-center">
+          <span class="bg-magic" id="magicNumber">&nbsp;</span>
+        </div>
+      </div>
+      <div class="row mx-0 mt-5">
+        <div class="column col-12 d-flex justify-content-around">
+          <a href="#"><img class="crystal-img" id="yellowCrystal" src="./assets/images/Yellow.jpg" alt=""/></a>
+          <a href="#"><img class="crystal-img" id="pinkCrystal" src="./assets/images/pink.jpg" alt=""/></a>
+          <a href="#"><img class="crystal-img" id="greenCrystal" src="./assets/images/green.jpg" alt=""/></a>
+          <a href="#"><img class="crystal-img" id="redCrystal" src="./assets/images/red.jpg" alt=""/></a>
+        </div>
+      </div>
+      <div class="row mx-0 mt-5 pt-5">
+        <div class="column col-4 text-center">
+          <span class="bg-score">Total Score</span>
+        </div>
+        <div class="column col-4 text-center">
+          <button class="btn bg-warning">Play Again</button>
+        </div>
+        <div class="column col-4">
+          <span class="bg-score">Wins&nbsp;</span>
+          <span class="bg-score" id="winCount">&nbsp;</span>
+        </div>
+      </div>
+      <div class="row mx-0">
+        <div class="column col-4 text-center">
+          <span class="bg-score" id="totalScore">&nbsp;</span>
+        </div>
+        <div class="column col-4 text-center"></div>
+        <div class="column col-4">
+          <span class="bg-score">Losses&nbsp;</span>
+          <span class="bg-score" id="lossCount">&nbsp;</span>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

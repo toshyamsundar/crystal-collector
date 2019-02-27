@@ -1,0 +1,60 @@
+.container-fluid {
+  padding: 0;
+}
+
+.bgimg {
+  background: url("../images/Crystal-background.jpg");
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+}
+
+h2 {
+  color: white;
+}
+
+.bg-magic {
+  border: 1px solid #ffc107;
+  font-size: 1.6rem;
+  color: #ffc107;
+  font-weight: bold;
+  background: linear-gradient(rgba(17, 21, 61, 0.521), rgba(2, 3, 34, 0.9));
+  box-shadow: 1px 1px 1px #ffc107;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.1rem;
+  padding: 3px;
+}
+
+.bg-score {
+  border: 1.5px solid #ffc107;
+  font-size: 1.2rem;
+  color: rgb(2, 3, 34);
+  background: linear-gradient(rgb(255, 193, 7, 0.521), rgb(255, 193, 7, 0.9));
+  box-shadow: 1px 1px 1px #ffc107;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.1rem;
+  padding: 3px;
+}
+
+.crystal-img {
+  height: 120px;
+  width: 120px;
+  box-shadow: 2px 2px 2px #ffc107;
+  border-radius: 15%;
+}
+
+.btn {
+  box-shadow: 2px 2px 2px rgb(2, 3, 34);
+  font-weight: 400;
+  letter-spacing: 0.1rem;
+  font-size: 1.2rem;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+.crystal-img:hover {
+  box-shadow: none;
+  border: 2px solid #ffc107;
+  border-radius: 15%;
+}
