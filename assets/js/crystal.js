@@ -24,24 +24,28 @@ $(document).ready(function() {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
 
+  //Function to set attribute of an element
   var setAttribute = (elemId, attrName, attrValue) => {
     // console.log("Element ID: " + elemId);
     // console.log("AttrName:AttrValue " + attrName + ":" + attrValue);
     $(elemId).attr(attrName, attrValue);
   };
 
+  // Function the get the value of an attribute
   var getAttribute = (elemId, attrName) => {
-    elemId = "#" + elemId;
+    //elemId = "#" + elemId;
     // console.log("Element ID: " + elemId);
     // console.log("AttrName:AttrValue " + attrName + ":" + $(elemId).attr(attrName));
     return $(elemId).attr(attrName);
   };
 
+  // Function to set the text value for an element
   var setText = (elemId, textValue) => {
     console;
     $(elemId).text(textValue);
   };
 
+  // Function to initialize the game
   var initGame = () => {
     magicNumber = generateRandom(19, 120);
     console.log("Magic Number: " + magicNumber);
@@ -67,32 +71,71 @@ $(document).ready(function() {
     setText(totalScoreId, totalScore);
   };
 
+  // Function to add elements to any div
   var addElem = (elTag, elClass, elText) => {
     var newElem = $(elTag);
     newElem.text(elText);
     $(elClass).append(newElem);
   };
 
+  // Function to display modal with messages
   var showMessage = (title, message) => {
     $(".modal-title").text(title);
     addElem("<p>", ".modal-body", message);
     $("#overlay").modal("show");
 
-    // Hide the dialog after 2 seconds
+    // Hide the dialog after 3 seconds
     setTimeout(function() {
       $("#overlay").modal("hide");
       $(".modal-body").empty();
     }, 3000);
   };
 
+  // Function to reset the data-position value for each crystal to a random number between 1 & 20
+  var resetCrystalPosition = () => {
+    var newPosition;
+    $(".crystals")
+      .children("a")
+      .each(function() {
+        newPosition = generateRandom(1, 20);
+        // console.log(
+        //   "Crystal: " +
+        //     $(this)
+        //       .children("img")
+        //       .attr("id") +
+        //     " " +
+        //     newPosition
+        // );
+        $(this).data("position", newPosition);
+      });
+  };
+
+  // Function to sort elements
+  var sortElements = (a, b) => {
+    // console.log("a: " + parseInt($(b).data("position")));
+    // console.log("b: " + parseInt($(a).data("position")));
+    // console.log("---------------------");
+    return parseInt($(b).data("position")) - parseInt($(a).data("position"));
+  };
+
+  // Function to rearrange the crystals based on the data-position value
+  var rearrangeCrystals = () => {
+    setTimeout(function() {
+      $(".crystals a")
+        .sort(sortElements)
+        .appendTo(".crystals");
+    }, 100);
+  };
+
+  // Callback function for crystal onClick event
   $(".crystal-img").on("click", function() {
     if (!startPlay) {
-      showMessage("Rules!!", "Click on Play to begin");
+      showMessage("Rules!!", "Click Play to begin");
     } else {
       // console.log("Total Score Before: " + totalScore);
       // console.log("This: " + $(this));
       // console.log("Attribute Name: " + attributeName);
-      totalScore += parseInt(getAttribute($(this).attr("id"), attributeName));
+      totalScore += parseInt(getAttribute("#" + $(this).attr("id"), attributeName));
       // console.log("Total Score After: " + totalScore);
       setText(totalScoreId, totalScore);
 
@@ -110,10 +153,14 @@ $(document).ready(function() {
         setText(magicNumberId, magicNumber);
         showMessage("You Win", "Care to play again?");
         startPlay = false;
+      } else {
+        resetCrystalPosition();
+        rearrangeCrystals();
       }
     }
   });
 
+  // Callback function for button onClick
   $(".btn").on("click", function() {
     initGame();
     startPlay = true;
