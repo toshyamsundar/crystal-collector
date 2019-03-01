@@ -19,7 +19,19 @@ $(document).ready(function() {
   var winCountId = "#winCount";
   var attributeName = "value";
 
-  //Function that returns a random number between 2 values
+  var gameRules = [
+    "Click Play to begin",
+    "A magic number will be displayed on the screen",
+    "Each one of the crystals will be assigned a random secret value",
+    "Clicking on the crystals will add to the total score",
+    "If your total score goes over the magic number, you lose",
+    "You win, if your total score matches the magic number",
+    "Clicking on the crystals will randomly rearrange them",
+    "Your win and loss count gets tracked",
+    "Clicking on play again will reset the random numbers"
+  ];
+
+  //Function to return a random number between 2 values
   var generateRandom = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
@@ -48,23 +60,23 @@ $(document).ready(function() {
   // Function to initialize the game
   var initGame = () => {
     magicNumber = generateRandom(19, 120);
-    console.log("Magic Number: " + magicNumber);
+    // console.log("Magic Number: " + magicNumber);
     setText(magicNumberId, magicNumber);
 
     yellowCrystalValue = generateRandom(1, 12);
-    console.log("Yellow Value: " + yellowCrystalValue);
+    // console.log("Yellow Value: " + yellowCrystalValue);
     setAttribute(yellowCrystalId, attributeName, yellowCrystalValue);
 
     pinkCrystalValue = generateRandom(1, 12);
-    console.log("Pink Value: " + pinkCrystalValue);
+    // console.log("Pink Value: " + pinkCrystalValue);
     setAttribute(pinkCrystalId, attributeName, pinkCrystalValue);
 
     greenCrystalValue = generateRandom(1, 12);
-    console.log("Green Value: " + greenCrystalValue);
+    // console.log("Green Value: " + greenCrystalValue);
     setAttribute(greenCrystalId, attributeName, greenCrystalValue);
 
     redCrystalValue = generateRandom(1, 12);
-    console.log("Red Value: " + redCrystalValue);
+    // console.log("Red Value: " + redCrystalValue);
     setAttribute(redCrystalId, attributeName, redCrystalValue);
 
     totalScore = 0;
@@ -89,6 +101,22 @@ $(document).ready(function() {
       $("#overlay").modal("hide");
       $(".modal-body").empty();
     }, 3000);
+  };
+
+  // This function displays the rules when the page loads
+  var showRules = () => {
+    $(".modal-title").text("Rules!");
+    for (var i = 0; i < gameRules.length; i++) {
+      addElem("<p>", ".modal-body", gameRules[i]);
+    }
+
+    $("#overlay").modal("show");
+
+    // Hide the dialog after 25 seconds
+    setTimeout(function() {
+      $("#overlay").modal("hide");
+      $(".modal-body").empty();
+    }, 25000);
   };
 
   // Function to reset the data-position value for each crystal to a random number between 1 & 20
@@ -165,4 +193,11 @@ $(document).ready(function() {
     initGame();
     startPlay = true;
   });
+
+  $(".close").on("click", function() {
+    $(".modal-body").empty();
+  });
+
+  // Call the showRules function as soon as the page loads
+  showRules();
 });
